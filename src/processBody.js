@@ -1,5 +1,5 @@
 import cheerio from 'cheerio'
-import formatJSON from './formatJSON'
+import { formatJSON } from './formatJSON'
 
 function processBody(body){
 
