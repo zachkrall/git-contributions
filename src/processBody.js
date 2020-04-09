@@ -1,5 +1,5 @@
-const cheerio = require('cheerio')
-const formatJSON = require('./formatJSON')
+import cheerio from 'cheerio'
+import formatJSON from './formatJSON'
 
 function processBody(body){
 
@@ -22,4 +22,4 @@ function processBody(body){
 
 }
 
-module.exports = processBody
+export { processBody }

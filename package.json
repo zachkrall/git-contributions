@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "main.js",
+  "main": "./lib/main.js",
   "scripts": {
-    "test": "node ./test/main.js",
-    "start": "node main.js"
+    "test": "npm run build && node ./test/main.js",
+    "build": "babel src --out-dir lib"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,12 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "babel-plugin-add-module-exports": "^1.0.2"
   }
 }

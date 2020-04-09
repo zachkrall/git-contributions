@@ -1,15 +1,17 @@
-const gitContributions = require('../main.js');
+const gitContributions = require('../lib/main.js');
 
-(async () => {
+console.log(gitContributions());
 
-  let json = await gitContributions({
-              gitlab: 'zachkrall',
-              github: 'zachkrall'
-            })
-            .then(data => {
-              return data
-            })
-
-  console.log(json)
-
-})();
+// (async () => {
+//
+//   let json = await gitContributions({
+//               gitlab: 'zachkrall',
+//               github: 'zachkrall'
+//             })
+//             .then(data => {
+//               return data
+//             })
+//
+//   console.log(json)
+//
+// })();

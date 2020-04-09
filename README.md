@@ -9,7 +9,7 @@ npm install zachkrall/git-contributions
 ```
 use in js file
 ```
-const gitContributions = require('git-contributions')
+import { gitContributions } from 'git-contributions'
 
 const config = {
   gitlab: 'username',

@@ -1,6 +1,6 @@
-const fetch = require('node-fetch')
-const processBody = require('./src/processBody')
-const formatJSON = require('./src/formatJSON');
+import fetch from 'node-fetch'
+import { processBody } from './processBody'
+import { formatJSON } from './formatJSON'
 
 // GLOBALS
 const method = { method: 'GET' }
@@ -38,4 +38,4 @@ async function gitContributions ({ github, gitlab } = {}) {
   return { data }
 }
 
-module.exports = gitContributions
+export default gitContributions

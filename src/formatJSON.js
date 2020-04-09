@@ -27,4 +27,4 @@ const formatJSON = json => {
 
 }
 
-module.exports = formatJSON
+export { formatJSON }
