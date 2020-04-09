@@ -26,16 +26,22 @@ gitContributions(config)
 
 ```
 {
-  status: { github: 200, gitlab: 200 },
-  github: {
-    max_value: 28,
-    min_value: 1,
-    entries: [{ date: '2020-01-01', count: 6 }, { date: '2020-01-02', count: 2 }]
-  },
-  gitlab: {
-    min_value: 1,
-    max_value: 20,
-    entries: [{ date: '2020-01-01', count: 4 }]
+  data: {
+    gitlab: {
+      min_value: 1,
+      max_value: 20,
+      entries: [
+        { date: '2020-01-01', count: 4 }
+      ]
+    },
+    github: {
+      min_value: 1,
+      max_value: 28,
+      entries: [
+        { date: '2020-01-01', count: 6 },
+        { date: '2020-01-02', count: 2 }
+      ]
+    }
   }
 }
 ```
