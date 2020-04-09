@@ -1,58 +1,41 @@
 const fetch = require('node-fetch')
-const process_body = require('./src/process_body')
+const processBody = require('./src/processBody')
+const formatJSON = require('./src/formatJSON');
 
+// GLOBALS
+const method = { method: 'GET' }
+
+// HELPER FUNCTIONS
+const sendText = res => res.text()
+const sendJSON = res => res.json()
+
+// MAIN FUNCTION
 async function gitContributions ({ github, gitlab } = {}) {
 
-  let gitlab_data, github_data
+  // FORMAT URL
+  let gh_url = `https://github.com/${github}`
+  let gl_url = `https://gitlab.com/users/${gitlab}/calendar.json`
 
-  let status = {github: '', gitlab: ''}
+  // STATUS OBJECT
+  let data = {}
 
   if(gitlab){
-    gitlab_data = await fetch('https://gitlab.com/users/'+gitlab+'/calendar.json', { method: 'GET' })
-                        .then(res => {
-                          status.gitlab = res.status
-                          return res.json()
-                        })
-                        .then(json => {
-                          let max = 0
-                          let min = 999
-                          let list = []
-                          for( var key in json){
-                            let date = key
-                            let count = json[key]
-
-                            if(count > max){
-                              max = count
-                            }
-                            if(count < min){
-                              min = count
-                            }
-                            list.push({ date, count })
-                          }
-                          return {
-                            min_value: min,
-                            max_value: max,
-                            entries: list
-                          }
-                        })
+    data['gitlab'] = await fetch(
+      gl_url, method
+    )
+    .then(sendJSON)
+    .then(formatJSON)
   }
 
   if(github){
-    github_data = await fetch('https://github.com/'+github, { method: 'GET' })
-                       .then(res => {
-                         status.github = res.status
-                         return res.text()
-                       })
-                       .then(body => {
-                         return process_body(body)
-                       })
+    data['github']= await fetch(
+      gh_url, method
+    )
+    .then(sendText)
+    .then(processBody)
   }
 
-  return {
-    status,
-    github: github_data,
-    gitlab: gitlab_data
-  }
+  return { data }
 }
 
 module.exports = gitContributions
